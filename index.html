@@ -1,0 +1,1426 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Level 18'in kilidini açtın!</title>
+
+<style>
+:root {
+  --purple:#28164b;
+  --violet:#7044a5;
+  --yellow:#ffe58a;
+  --lavender:#eadcff;
+  --cream:#fff9e9;
+}
+
+* {
+  box-sizing:border-box;
+  scroll-behavior:smooth;
+}
+
+body {
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:var(--cream);
+  color:#35264b;
+}
+
+/* İLK EKRAN */
+
+.hero {
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:30px 15px;
+  color:white;
+  background:linear-gradient(145deg,#190d31,#38205e,#7044a5);
+  position:relative;
+  overflow:hidden;
+}
+
+.hero h1 {
+  font-size:clamp(45px,10vw,85px);
+  color:var(--yellow);
+  margin:20px 0;
+  text-shadow:0 5px 0 #4b2c75;
+}
+
+.hero p {
+  line-height:1.8;
+  max-width:550px;
+}
+
+.date {
+  padding:12px 22px;
+  border:1px solid #b99ae7;
+  border-radius:30px;
+  margin:15px;
+}
+
+.stars {
+  color:var(--yellow);
+  font-size:25px;
+  animation:float 3s infinite ease-in-out;
+}
+
+@keyframes float {
+  50% { transform:translateY(-12px); }
+}
+
+/* GERİ SAYIM */
+
+.countdown {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+  max-width:550px;
+  width:100%;
+  margin:25px auto;
+}
+
+.time {
+  background:white;
+  padding:15px 5px;
+  text-align:center;
+  border-radius:15px;
+  color:#482c70;
+}
+
+.time strong {
+  display:block;
+  font-size:25px;
+  color:#7044a5;
+}
+
+.time span {
+  font-size:12px;
+}
+
+/* KİLİT AÇILMA */
+
+#unlockArea {
+  display:none;
+  animation:appear 1s ease;
+}
+
+#unlockArea h2 {
+  color:var(--yellow);
+  font-size:27px;
+}
+
+button {
+  background:#5c3886;
+  color:white;
+  border:none;
+  border-radius:12px;
+  padding:12px 18px;
+  cursor:pointer;
+  font-weight:bold;
+  margin-top:8px;
+  font-size:15px;
+}
+
+button:hover { opacity:.85; }
+
+.gold {
+  background:var(--yellow);
+  color:#35264b;
+}
+
+@keyframes appear {
+  from {
+    opacity:0;
+    transform:translateY(20px);
+  }
+  to {
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* İKİNCİ EKRAN */
+
+#secondPage {
+  display:none;
+  min-height:100vh;
+  background:var(--cream);
+  animation:appear 1s ease;
+}
+
+.second-hero {
+  background:linear-gradient(145deg,#190d31,#38205e,#7044a5);
+  color:white;
+  text-align:center;
+  padding:60px 20px 50px;
+}
+
+.second-hero h1 {
+  color:var(--yellow);
+  font-size:clamp(35px,8vw,60px);
+  margin:22px 0;
+}
+
+.second-hero p {
+  max-width:500px;
+  line-height:1.8;
+  margin:15px auto;
+}
+
+/* MESAJ ALANI */
+
+main {
+  max-width:850px;
+  margin:auto;
+  padding:45px 15px;
+}
+
+h2 {
+  text-align:center;
+  color:#482c70;
+  font-size:28px;
+}
+
+.subtitle {
+  text-align:center;
+  color:#766984;
+  line-height:1.8;
+  margin-bottom:35px;
+}
+
+/* YATAY KAYDIRMA */
+
+.slider-wrapper {
+  position:relative;
+}
+
+.slider {
+  display:flex;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  scroll-behavior:smooth;
+  gap:18px;
+  scrollbar-width:none;
+  padding:10px 3px 20px;
+  -webkit-overflow-scrolling:touch;
+}
+
+.slider::-webkit-scrollbar {
+  display:none;
+}
+
+/* MESAJ KARTLARI */
+
+.message-card {
+  flex:0 0 100%;
+  scroll-snap-align:center;
+  min-height:300px;
+  background:linear-gradient(145deg,#fff2bd,#eee2ff);
+  border:1px solid #e1d0f4;
+  border-radius:24px;
+  padding:30px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  box-shadow:0 10px 25px #39215b12;
+}
+
+.message-number {
+  color:#8b6bb0;
+  font-size:13px;
+  letter-spacing:2px;
+}
+
+.message-card h3 {
+  color:#482c70;
+  font-size:24px;
+  margin:20px 0;
+}
+
+.message-card p {
+  color:#5e506e;
+  font-size:16px;
+  line-height:1.9;
+  white-space:pre-wrap;
+}
+
+.author {
+  border-top:1px solid #d7c2eb;
+  padding-top:15px;
+  color:#7044a5;
+  font-weight:bold;
+  text-align:right;
+}
+
+/* OKLAR */
+
+.controls {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:18px;
+  margin:15px 0;
+}
+
+.controls button {
+  background:#482c70;
+  color:white;
+  padding:13px 22px;
+  border-radius:12px;
+  font-size:19px;
+}
+
+/* SAYFA NOKTALARI */
+
+.dots {
+  display:flex;
+  justify-content:center;
+  gap:9px;
+  margin:20px 0;
+}
+
+.dot {
+  width:9px;
+  height:9px;
+  border-radius:50%;
+  background:#cbb9dd;
+  border:none;
+  padding:0;
+  cursor:pointer;
+}
+
+.dot.active {
+  background:#7044a5;
+  transform:scale(1.3);
+}
+
+.hint {
+  text-align:center;
+  color:#897b96;
+  font-size:13px;
+  margin-top:15px;
+}
+
+/* ALT ALAN */
+
+footer {
+  background:var(--purple);
+  color:white;
+  text-align:center;
+  padding:35px 15px;
+  line-height:1.9;
+}
+
+footer .stars {
+  margin-bottom:10px;
+}
+
+/* MOBİL */
+
+@media(max-width:500px) {
+  .countdown { gap:5px; }
+
+  .time strong { font-size:20px; }
+
+  main { padding:30px 15px; }
+
+  .message-card {
+    padding:23px;
+    min-height:320px;
+  }
+
+  h2 { font-size:24px; }
+}
+
+@media(min-width:650px) {
+  .message-card { flex:0 0 75%; }
+}
+
+/* FOTOĞRAF GALERİSİ */
+
+#galleryPage {
+  display:none;
+  min-height:100vh;
+  background:var(--cream);
+  animation:appear 1s ease;
+}
+
+.gallery-hero {
+  background:linear-gradient(145deg,#190d31,#38205e,#7044a5);
+  color:white;
+  text-align:center;
+  padding:48px 18px 38px;
+}
+
+.gallery-hero h1 {
+  color:var(--yellow);
+  font-size:clamp(34px,8vw,56px);
+  margin:18px 0;
+}
+
+.gallery-hero p {
+  max-width:560px;
+  margin:12px auto;
+  line-height:1.8;
+}
+
+.gallery-actions {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:10px;
+  margin:22px auto;
+}
+
+.gallery-panel {
+  max-width:1000px;
+  margin:auto;
+  padding:30px 16px 55px;
+}
+
+.gallery-form {
+  background:white;
+  border:1px solid #e1d0f4;
+  border-radius:20px;
+  padding:20px;
+  box-shadow:0 10px 25px #39215b12;
+  margin-bottom:28px;
+}
+
+.gallery-form label {
+  display:block;
+  color:#482c70;
+  font-weight:bold;
+  margin:12px 0 7px;
+}
+
+.gallery-form input[type="text"],
+.gallery-form input[type="file"] {
+  width:100%;
+  padding:12px;
+  border:1px solid #d7c2eb;
+  border-radius:10px;
+  background:#fffdf8;
+  color:#35264b;
+}
+
+.gallery-form small {
+  display:block;
+  color:#766984;
+  line-height:1.6;
+  margin-top:9px;
+}
+
+.gallery-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+  gap:16px;
+}
+
+.gallery-item {
+  overflow:hidden;
+  background:white;
+  border:1px solid #e1d0f4;
+  border-radius:16px;
+  box-shadow:0 8px 20px #39215b10;
+}
+
+.gallery-item img {
+  display:block;
+  width:100%;
+  aspect-ratio:1/1;
+  object-fit:cover;
+  background:#eadcff;
+}
+
+.gallery-item-info { padding:12px; }
+
+.gallery-item-info h3 {
+  color:#482c70;
+  font-size:16px;
+  margin:0 0 7px;
+  overflow-wrap:anywhere;
+}
+
+.gallery-item-info p {
+  color:#766984;
+  font-size:13px;
+  line-height:1.5;
+  margin:0 0 10px;
+  white-space:pre-wrap;
+  overflow-wrap:anywhere;
+}
+
+.gallery-item-info button {
+  margin-top:0;
+  padding:8px 11px;
+  font-size:13px;
+}
+
+.gallery-empty {
+  text-align:center;
+  color:#766984;
+  padding:35px 15px;
+  background:#fff;
+  border:1px dashed #cbb9dd;
+  border-radius:16px;
+  line-height:1.8;
+}
+
+.gallery-back {
+  background:var(--yellow);
+  color:#35264b;
+}
+
+@media(max-width:500px) {
+  .gallery-grid {
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:10px;
+  }
+
+  .gallery-item-info { padding:10px; }
+  .gallery-item-info h3 { font-size:14px; }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- İLK EKRAN -->
+
+<header class="hero" id="top">
+
+  <div class="stars">✦ ✧ ★ ✧ ✦</div>
+
+  <p>DOĞUM GÜNÜN KUTLU OLSUN!</p>
+
+  <h1>18. YAŞ LEVELİ<br>AÇILDI</h1>
+
+  <p>
+    Yeni yaşın, yeni maceraların ve
+    bitmeyen güzel anıların başlangıcı olsun 🥹
+    Bu küçük site, senin için!
+  </p>
+
+  <div class="date">19 KASIM 💜</div>
+
+  <button type="button" onclick="openGallery()">
+    FOTOĞRAF GALERİSİ
+  </button>
+
+  <div class="countdown" id="countdown">
+
+    <div class="time">
+      <strong id="days">--</strong>
+      <span>GÜN</span>
+    </div>
+
+    <div class="time">
+      <strong id="hours">--</strong>
+      <span>SAAT</span>
+    </div>
+
+    <div class="time">
+      <strong id="minutes">--</strong>
+      <span>DAKİKA</span>
+    </div>
+
+    <div class="time">
+      <strong id="seconds">--</strong>
+      <span>SANİYE</span>
+    </div>
+
+  </div>
+
+  <div id="unlockArea">
+
+    <h2>✦ LEVEL 18 AÇILDI! ✦</h2>
+
+    <p>
+      Beklediğin gün geldi.
+      Senin için küçük bir sürprizim var...
+    </p>
+
+    <button class="gold" onclick="openSecondPage()">
+      MACERAYA BAŞLA →
+    </button>
+
+  </div>
+
+</header>
+
+
+<!-- İKİNCİ EKRAN -->
+
+<section id="secondPage">
+
+  <header class="second-hero">
+
+    <div class="stars">✦ ✧ ★ ✧ ✦</div>
+
+    <p>18. YAŞINA HOŞ GELDİN</p>
+
+    <h1>LEVEL 18!</h1>
+
+    <p>
+      Bu yaşında sana söylemek istedikleri
+      birkaç şey olan insanlar var.
+      Bakalım kimler neler yazmış?
+    </p>
+
+    <div class="stars">✦ ✧ ★ ✧ ✦</div>
+
+  </header>
+
+  <div class="gallery-actions">
+    <button type="button" onclick="openGallery()">
+      FOTOĞRAF GALERİSİ
+    </button>
+  </div>
+
+  <main>
+
+    <h2>ARKADAŞLARINDAN MESAJLAR</h2>
+
+    <p class="subtitle">
+      Her kartta başka bir mesaj var.
+      Sağa veya sola kaydırarak okuyabilirsin.
+    </p>
+
+    <div class="slider-wrapper">
+
+      <div class="slider" id="slider">
+
+        <div class="message-card">
+
+          <div>
+            <span class="message-number">MESAJ 01</span>
+
+            <h3>Bir arkadaşından...</h3>
+
+            <p>
+Buraya birinci arkadaşının mesajını yaz.
+
+İyi ki doğdun!
+            </p>
+          </div>
+
+          <div class="author">
+            — Arkadaşının adı
+          </div>
+
+        </div>
+
+        <div class="message-card">
+
+          <div>
+            <span class="message-number">MESAJ 02</span>
+
+            <h3>Bir başka mesaj!</h3>
+
+            <p>
+Buraya ikinci arkadaşının mesajını yaz.
+            </p>
+          </div>
+
+          <div class="author">
+            — Arkadaşının adı
+          </div>
+
+        </div>
+
+        <div class="message-card">
+
+          <div>
+            <span class="message-number">MESAJ 03</span>
+
+            <h3>Sıradaki mesaj</h3>
+
+            <p>
+Buraya üçüncü arkadaşının mesajını yaz.
+            </p>
+          </div>
+
+          <div class="author">
+            — Arkadaşının adı
+          </div>
+
+        </div>
+
+        <div class="message-card">
+
+          <div>
+            <span class="message-number">MESAJ 04</span>
+
+            <h3>Sonraki mesaj</h3>
+
+            <p>
+Buraya dördüncü arkadaşının mesajını yaz.
+            </p>
+          </div>
+
+          <div class="author">
+            — Arkadaşının adı
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="controls">
+      <button onclick="moveSlide(-1)">←</button>
+      <button onclick="moveSlide(1)">→</button>
+    </div>
+
+    <div class="dots" id="dots"></div>
+
+    <p class="hint">
+      ← Diğer mesajları görmek için kaydır →
+    </p>
+
+  </main>
+
+  <footer>
+
+    <div class="stars">✦ ✧ ★ ✧ ✦</div>
+
+    NICE GÜZEL YAŞLARIN OLSUN😭🩵
+
+    <br>
+
+    18. yaşın kutlu olsun.
+
+    <br>
+
+    <small>Özel olarak hazırlandı.</small>
+
+  </footer>
+
+</section>
+
+
+<!-- FOTOĞRAF GALERİSİ -->
+
+<section id="galleryPage">
+
+  <header class="gallery-hero">
+
+    <div class="stars">✦ ✧ ★ ✧ ✦</div>
+
+    <p>GÜLDÜRECEK ANILAR</p>
+
+    <h1>FOTOĞRAF GALERİSİ</h1>
+
+    <p>
+      Genel veya özel chatte atılmış, güldüren
+      komik ss'ler.
+    </p>
+
+  </header>
+
+  <main class="gallery-panel">
+
+    <h2>YENİ BİR ANI & SS EKLE</h2>
+
+    <p class="subtitle">
+      Bir fotoğraf seç, istersen ona küçük bir not bırak.
+    </p>
+
+    <div class="gallery-form">
+
+      <label for="galleryPhoto">Fotoğraf</label>
+
+      <input
+        id="galleryPhoto"
+        type="file"
+        accept="image/*"
+      >
+
+      <label for="galleryCaption">
+        Fotoğrafın başlığı
+      </label>
+
+      <input
+        id="galleryCaption"
+        type="text"
+        maxlength="70"
+        placeholder="Örn. Unutulmaz bir gün..."
+      >
+
+      <label for="galleryNote">
+        Küçük bir not (isteğe bağlı)
+      </label>
+
+      <input
+        id="galleryNote"
+        type="text"
+        maxlength="180"
+        placeholder="Bu fotoğrafın hikâyesi..."
+      >
+
+      <button class="gold" onclick="addGalleryPhoto()">
+        FOTOĞRAFI EKLE
+      </button>
+
+      <small>
+        Fotoğraflar bu tarayıcıda ve bu cihazda saklanır.
+        Başka cihazlarda otomatik görünmez.
+        Tarayıcı verileri silinirse fotoğraflar da silinebilir.
+      </small>
+
+    </div>
+
+    <h2>RAMEGALERİ</h2>
+
+    <div id="galleryGrid" class="gallery-grid"></div>
+
+    <div id="galleryEmpty" class="gallery-empty">
+      Henüz fotoğraf eklenmedi.
+      İlk anını ekleyerek galeriyi başlatabilirsin. ✨
+    </div>
+
+  </main>
+
+  <div class="gallery-actions">
+    <button class="gallery-back" onclick="closeGallery()">
+      ← GERİ DÖN
+    </button>
+  </div>
+
+</section>
+
+
+<script>
+
+/* =========================
+   YILLIK DOĞUM GÜNÜ SİSTEMİ
+========================= */
+
+// Her yıl 19 Kasım doğum günü.
+// 12-18 Kasım: Sayaç.
+// 19 Kasım: Doğum günü ekranı.
+// Diğer günler: Fotoğraf galerisi.
+
+let birthday;
+let countdownMode = false;
+let birthdayMode = false;
+
+let returnToSecondPage = false;
+let returnToCountdown = false;
+let activeDateKey = "";
+
+function getBirthdayDates() {
+
+  const now = new Date();
+  const year = now.getFullYear();
+
+  const birthdayDate =
+    new Date(year, 10, 19, 0, 0, 0, 0);
+
+  const countdownStart =
+    new Date(year, 10, 12, 0, 0, 0, 0);
+
+  const nextDay =
+    new Date(year, 10, 20, 0, 0, 0, 0);
+
+  return {
+    now,
+    birthdayDate,
+    countdownStart,
+    nextDay
+  };
+}
+
+
+function applyYearlyMode() {
+
+  const {
+    now,
+    birthdayDate,
+    countdownStart,
+    nextDay
+  } = getBirthdayDates();
+
+  const today = new Date(
+    now.getFullYear(),
+    now.getMonth(),
+    now.getDate()
+  );
+
+  activeDateKey = today.toDateString();
+
+  countdownMode =
+    today >= countdownStart && today < birthdayDate;
+
+  birthdayMode =
+    today >= birthdayDate && today < nextDay;
+
+  birthday = birthdayDate.getTime();
+
+  const top = document.getElementById("top");
+  const gallery = document.getElementById("galleryPage");
+
+  const countdown =
+    document.getElementById("countdown");
+
+  const unlock =
+    document.getElementById("unlockArea");
+
+  if (countdownMode || birthdayMode) {
+
+    top.style.display = "flex";
+    gallery.style.display = "none";
+
+    countdown.style.display =
+      countdownMode ? "grid" : "none";
+
+    unlock.style.display =
+      birthdayMode ? "block" : "none";
+
+  } else {
+
+    top.style.display = "none";
+    gallery.style.display = "block";
+
+    countdown.style.display = "grid";
+    unlock.style.display = "none";
+
+  }
+
+}
+
+
+function updateCountdown() {
+
+  const todayKey = new Date().toDateString();
+
+  // Gün değiştiğinde site modunu yenile.
+  if (todayKey !== activeDateKey) {
+    applyYearlyMode();
+  }
+
+  if (!countdownMode) return;
+
+  const distance = birthday - Date.now();
+
+  if (distance <= 0) {
+    applyYearlyMode();
+    return;
+  }
+
+  document.getElementById("days").innerText =
+    Math.floor(distance / (1000 * 60 * 60 * 24));
+
+  document.getElementById("hours").innerText =
+    Math.floor((distance / (1000 * 60 * 60)) % 24);
+
+  document.getElementById("minutes").innerText =
+    Math.floor((distance / (1000 * 60)) % 60);
+
+  document.getElementById("seconds").innerText =
+    Math.floor((distance / 1000) % 60);
+
+}
+
+
+/* =========================
+   İKİNCİ EKRANI AÇ
+========================= */
+
+function openSecondPage() {
+
+  if (!birthdayMode) return;
+
+  document.getElementById("top").style.display = "none";
+
+  document.getElementById("galleryPage").style.display = "none";
+
+  document.getElementById("secondPage").style.display = "block";
+
+  window.scrollTo(0,0);
+
+}
+
+
+/* =========================
+   MESAJ KAYDIRMA SİSTEMİ
+========================= */
+
+const slider = document.getElementById("slider");
+
+const dotsContainer = document.getElementById("dots");
+
+const cards = document.querySelectorAll(".message-card");
+
+let currentSlide = 0;
+
+
+// NOKTALARI OLUŞTUR
+
+cards.forEach((card,index) => {
+
+  const dot = document.createElement("button");
+
+  dot.className = "dot";
+
+  dot.setAttribute(
+    "aria-label",
+    "Mesaj " + (index + 1)
+  );
+
+  dot.onclick = () => goToSlide(index);
+
+  dotsContainer.appendChild(dot);
+
+});
+
+const dots = document.querySelectorAll(".dot");
+
+
+// NOKTALARI GÜNCELLE
+
+function updateDots() {
+
+  dots.forEach((dot,index) => {
+
+    dot.classList.toggle(
+      "active",
+      index === currentSlide
+    );
+
+  });
+
+}
+
+
+// İSTENEN MESAJI GÖSTER
+
+function goToSlide(index) {
+
+  currentSlide = Math.max(
+    0,
+    Math.min(index,cards.length-1)
+  );
+
+  slider.scrollTo({
+
+    left:
+      cards[currentSlide].offsetLeft -
+      slider.offsetLeft,
+
+    behavior:"smooth"
+
+  });
+
+  updateDots();
+
+}
+
+
+// OKLARLA GEÇİŞ
+
+function moveSlide(direction) {
+
+  goToSlide(currentSlide + direction);
+
+}
+
+
+// PARMAKLA KAYDIRMAYI TAKİP ET
+
+slider.addEventListener("scroll",() => {
+
+  const center =
+    slider.scrollLeft + slider.clientWidth/2;
+
+  let closest = 0;
+
+  let minDistance = Infinity;
+
+  cards.forEach((card,index) => {
+
+    const cardCenter =
+      card.offsetLeft + card.offsetWidth/2;
+
+    const distance =
+      Math.abs(center-cardCenter);
+
+    if(distance < minDistance) {
+
+      minDistance = distance;
+      closest = index;
+
+    }
+
+  });
+
+  currentSlide = closest;
+
+  updateDots();
+
+});
+
+
+/* =========================
+   FOTOĞRAF GALERİSİ
+========================= */
+
+const galleryDBName = "AshiramePhotoGallery";
+
+const galleryStoreName = "photos";
+
+let galleryDB = null;
+
+
+// VERİTABANI
+
+function openGalleryDatabase() {
+
+  return new Promise((resolve, reject) => {
+
+    if (!("indexedDB" in window)) {
+
+      reject(
+        new Error("Bu tarayıcı fotoğraf depolamayı desteklemiyor.")
+      );
+
+      return;
+
+    }
+
+    const request =
+      indexedDB.open(galleryDBName, 1);
+
+    request.onupgradeneeded = () => {
+
+      const db = request.result;
+
+      if (!db.objectStoreNames.contains(galleryStoreName)) {
+
+        db.createObjectStore(galleryStoreName, {
+          keyPath: "id",
+          autoIncrement: true
+        });
+
+      }
+
+    };
+
+    request.onsuccess = () => {
+
+      galleryDB = request.result;
+      resolve(galleryDB);
+
+    };
+
+    request.onerror = () => reject(request.error);
+
+  });
+
+}
+
+
+// GALERİYİ AÇ
+
+async function openGallery() {
+
+  returnToSecondPage =
+    document.getElementById("secondPage").style.display === "block";
+
+  returnToCountdown =
+    document.getElementById("top").style.display === "flex";
+
+  document.getElementById("top").style.display = "none";
+
+  document.getElementById("secondPage").style.display = "none";
+
+  document.getElementById("galleryPage").style.display = "block";
+
+  window.scrollTo(0,0);
+
+  try {
+
+    if (!galleryDB) {
+      await openGalleryDatabase();
+    }
+
+    await renderGallery();
+
+  } catch(error) {
+
+    document.getElementById("galleryEmpty").textContent =
+      "Galeri açılamadı: " + error.message;
+
+  }
+
+}
+
+
+// GALERİDEN GERİ DÖN
+
+function closeGallery() {
+
+  document.getElementById("galleryPage").style.display = "none";
+
+  if (returnToSecondPage) {
+
+    document.getElementById("secondPage").style.display = "block";
+
+  } else if (returnToCountdown) {
+
+    document.getElementById("top").style.display = "flex";
+
+  } else {
+
+    document.getElementById("galleryPage").style.display = "block";
+
+  }
+
+  window.scrollTo(0,0);
+
+}
+
+
+// FOTOĞRAF EKLE
+
+async function addGalleryPhoto() {
+
+  const fileInput =
+    document.getElementById("galleryPhoto");
+
+  const captionInput =
+    document.getElementById("galleryCaption");
+
+  const noteInput =
+    document.getElementById("galleryNote");
+
+  const file = fileInput.files[0];
+
+  if (!file) {
+
+    alert("Lütfen önce bir fotoğraf seç.");
+
+    return;
+
+  }
+
+  if (!file.type.startsWith("image/")) {
+
+    alert("Lütfen geçerli bir fotoğraf dosyası seç.");
+
+    return;
+
+  }
+
+  try {
+
+    if (!galleryDB) {
+      await openGalleryDatabase();
+    }
+
+    const photo = {
+
+      image:file,
+
+      caption:
+        captionInput.value.trim() || "Güzel bir anı",
+
+      note:noteInput.value.trim(),
+
+      createdAt:Date.now()
+
+    };
+
+    await new Promise((resolve,reject) => {
+
+      const transaction = galleryDB.transaction(
+        galleryStoreName,
+        "readwrite"
+      );
+
+      transaction.objectStore(galleryStoreName).add(photo);
+
+      transaction.oncomplete = resolve;
+
+      transaction.onerror = () =>
+        reject(transaction.error);
+
+      transaction.onabort = () =>
+        reject(transaction.error);
+
+    });
+
+    fileInput.value = "";
+    captionInput.value = "";
+    noteInput.value = "";
+
+    await renderGallery();
+
+  } catch(error) {
+
+    alert(
+      "Fotoğraf kaydedilemedi. Depolama alanı dolmuş olabilir."
+    );
+
+  }
+
+}
+
+
+// FOTOĞRAFLARI GÖSTER
+
+async function renderGallery() {
+
+  if (!galleryDB) {
+    await openGalleryDatabase();
+  }
+
+  const photos = await new Promise((resolve,reject) => {
+
+    const transaction = galleryDB.transaction(
+      galleryStoreName,
+      "readonly"
+    );
+
+    const request =
+      transaction.objectStore(galleryStoreName).getAll();
+
+    request.onsuccess = () =>
+      resolve(request.result);
+
+    request.onerror = () =>
+      reject(request.error);
+
+  });
+
+  const grid =
+    document.getElementById("galleryGrid");
+
+  const empty =
+    document.getElementById("galleryEmpty");
+
+  grid.innerHTML = "";
+
+  empty.style.display =
+    photos.length ? "none" : "block";
+
+  photos.sort((a,b) => b.createdAt - a.createdAt);
+
+  photos.forEach((photo) => {
+
+    const card =
+      document.createElement("article");
+
+    card.className = "gallery-item";
+
+    const image =
+      document.createElement("img");
+
+    const imageUrl =
+      URL.createObjectURL(photo.image);
+
+    image.src = imageUrl;
+
+    image.alt =
+      photo.caption || "Galeri fotoğrafı";
+
+    image.onload = () =>
+      URL.revokeObjectURL(imageUrl);
+
+    const info =
+      document.createElement("div");
+
+    info.className = "gallery-item-info";
+
+    const title =
+      document.createElement("h3");
+
+    title.textContent =
+      photo.caption || "Güzel bir anı";
+
+    const note =
+      document.createElement("p");
+
+    note.textContent =
+      photo.note || "";
+
+    const removeButton =
+      document.createElement("button");
+
+    removeButton.type = "button";
+
+    removeButton.textContent = "Fotoğrafı sil";
+
+    removeButton.onclick = () =>
+      deleteGalleryPhoto(photo.id);
+
+    info.append(title,note,removeButton);
+
+    card.append(image,info);
+
+    grid.appendChild(card);
+
+  });
+
+}
+
+
+// FOTOĞRAF SİL
+
+async function deleteGalleryPhoto(id) {
+
+  if (!confirm("Bu fotoğrafı galeriden silmek istiyor musun?")) {
+    return;
+  }
+
+  try {
+
+    await new Promise((resolve,reject) => {
+
+      const transaction = galleryDB.transaction(
+        galleryStoreName,
+        "readwrite"
+      );
+
+      transaction.objectStore(galleryStoreName).delete(id);
+
+      transaction.oncomplete = resolve;
+
+      transaction.onerror = () =>
+        reject(transaction.error);
+
+    });
+
+    await renderGallery();
+
+  } catch(error) {
+
+    alert("Fotoğraf silinemedi.");
+
+  }
+
+}
+
+
+/* =========================
+   SİTEYİ BAŞLAT
+========================= */
+
+applyYearlyMode();
+
+updateCountdown();
+
+setInterval(updateCountdown,1000);
+
+updateDots();
+
+</script>
+
+</body>
+</html>
