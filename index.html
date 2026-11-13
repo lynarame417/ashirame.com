@@ -435,7 +435,8 @@ footer .stars {
 .gallery-item img {
   display: block;
   width: 100%;
-  height: auto;
+  height: auto; /* Yüksekliği otomatik bırakarak orijinal oranı korur */
+  object-fit: contain; /* Fotoğrafın hiçbir yerini kesmez */
   background: #eadcff;
 }
 
