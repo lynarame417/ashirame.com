@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Level 18'in kilidini açtın!</title>
+    <title>18. YAŞIN KUTLU OLSUN!</title>
     <link rel="icon" type="image/png" href="favicon.png">
 </head>
 
@@ -385,39 +385,6 @@ footer .stars {
   padding:30px 16px 55px;
 }
 
-.gallery-form {
-  background:white;
-  border:1px solid #e1d0f4;
-  border-radius:20px;
-  padding:20px;
-  box-shadow:0 10px 25px #39215b12;
-  margin-bottom:28px;
-}
-
-.gallery-form label {
-  display:block;
-  color:#482c70;
-  font-weight:bold;
-  margin:12px 0 7px;
-}
-
-.gallery-form input[type="text"],
-.gallery-form input[type="file"] {
-  width:100%;
-  padding:12px;
-  border:1px solid #d7c2eb;
-  border-radius:10px;
-  background:#fffdf8;
-  color:#35264b;
-}
-
-.gallery-form small {
-  display:block;
-  color:#766984;
-  line-height:1.6;
-  margin-top:9px;
-}
-
 .gallery-grid {
   display:grid;
   grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
@@ -435,8 +402,8 @@ footer .stars {
 .gallery-item img {
   display: block;
   width: 100%;
-  height: auto; /* Yüksekliği otomatik bırakarak orijinal oranı korur */
-  object-fit: contain; /* Fotoğrafın hiçbir yerini kesmez */
+  height: auto;
+  object-fit: contain;
   background: #eadcff;
 }
 
@@ -456,12 +423,6 @@ footer .stars {
   margin:0 0 10px;
   white-space:pre-wrap;
   overflow-wrap:anywhere;
-}
-
-.gallery-item-info button {
-  margin-top:0;
-  padding:8px 11px;
-  font-size:13px;
 }
 
 .gallery-empty {
@@ -821,11 +782,11 @@ footer .stars {
 
     <div class="stars">✦ ✧ ★ ✧ ✦</div>
 
-    NICE GÜZEL YAŞLARIN OLSUN😭🩵
+    NİCE GÜZEL YAŞLARIN OLSUN😭🩵
 
     <br>
 
-   PRODUCER BY LYNARAME
+    PRODUCER BY LYNARAME
 
     <br>
 
@@ -850,79 +811,20 @@ footer .stars {
 
     <p>
       Genel veya özel chatte atılmış, güldüren
-      komik ss'ler.
+      komik ss'ler ve unutulmaz anılar.
     </p>
 
   </header>
 
   <main class="gallery-panel">
 
-    <h2>YENİ BİR ANI & SS EKLE</h2>
-
-    <p class="subtitle">
-      Bir fotoğraf seç, istersen ona küçük bir not bırak.
-    </p>
-
-    <div class="gallery-form">
-
-      <label for="galleryPhoto">Fotoğraf</label>
-
-      <input
-        id="galleryPhoto"
-        type="file"
-        accept="image/*"
-      >
-
-      <label for="galleryCaption">
-        Fotoğrafın başlığı
-      </label>
-
-      <input
-        id="galleryCaption"
-        type="text"
-        maxlength="70"
-        placeholder="Örn. Unutulmaz bir gün..."
-      >
-
-      <label for="galleryNote">
-        Küçük bir not (isteğe bağlı)
-      </label>
-
-      <input
-        id="galleryNote"
-        type="text"
-        maxlength="180"
-        placeholder="Bu fotoğrafın hikâyesi..."
-      >
-
-      <button class="gold" onclick="addGalleryPhoto()">
-        FOTOĞRAFI EKLE
-      </button>
-
-      <small>
-        Fotoğraflar bu tarayıcıda ve bu cihazda saklanır.
-        Başka cihazlarda otomatik görünmez.
-        Tarayıcı verileri silinirse fotoğraflar da silinebilir.
-      </small>
-
-    </div>
-
     <h2>RAMEGALERİ</h2>
 
-    <div id="galleryGrid" class="gallery-grid">
-  <article class="gallery-item">
-    <img src="IMG_9200.jpeg" alt="Özel Anı">
-    <div class="gallery-item-info">
-      <h3>İki malın Hatırası</h3>
-      <p>Bu anı her zaman burada kalacak ✨</p>
-    </div>
-  </article>
-</div>
+    <!-- Fotoğraflar JavaScript ile otomatik buraya gelecek -->
+    <div id="galleryGrid" class="gallery-grid"></div>
 
-
-    <div id="galleryEmpty" class="gallery-empty">
-      Henüz fotoğraf eklenmedi.
-      İlk anını ekleyerek galeriyi başlatabilirsin. ✨
+    <div id="galleryEmpty" class="gallery-empty" style="display:none;">
+      Henüz fotoğraf eklenmedi. ✨
     </div>
 
   </main>
@@ -942,11 +844,6 @@ footer .stars {
    YILLIK DOĞUM GÜNÜ SİSTEMİ
 ========================= */
 
-// Her yıl 19 Kasım doğum günü.
-// 12-18 Kasım: Sayaç.
-// 19 Kasım: Doğum günü ekranı.
-// Diğer günler: Fotoğraf galerisi.
-
 let birthday;
 let countdownMode = false;
 let birthdayMode = false;
@@ -956,91 +853,46 @@ let returnToCountdown = false;
 let activeDateKey = "";
 
 function getBirthdayDates() {
-
   const now = new Date();
   const year = now.getFullYear();
 
-  const birthdayDate =
-    new Date(year, 10, 19, 0, 0, 0, 0);
+  const birthdayDate = new Date(year, 10, 19, 0, 0, 0, 0);
+  const countdownStart = new Date(year, 10, 12, 0, 0, 0, 0);
+  const nextDay = new Date(year, 10, 20, 0, 0, 0, 0);
 
-  const countdownStart =
-    new Date(year, 10, 12, 0, 0, 0, 0);
-
-  const nextDay =
-    new Date(year, 10, 20, 0, 0, 0, 0);
-
-  return {
-    now,
-    birthdayDate,
-    countdownStart,
-    nextDay
-  };
+  return { now, birthdayDate, countdownStart, nextDay };
 }
 
-
 function applyYearlyMode() {
+  const { now, birthdayDate, countdownStart, nextDay } = getBirthdayDates();
 
-  const {
-    now,
-    birthdayDate,
-    countdownStart,
-    nextDay
-  } = getBirthdayDates();
-
-  const today = new Date(
-    now.getFullYear(),
-    now.getMonth(),
-    now.getDate()
-  );
-
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
   activeDateKey = today.toDateString();
 
-  countdownMode =
-    today >= countdownStart && today < birthdayDate;
-
-  birthdayMode =
-    today >= birthdayDate && today < nextDay;
-
+  countdownMode = today >= countdownStart && today < birthdayDate;
+  birthdayMode = today >= birthdayDate && today < nextDay;
   birthday = birthdayDate.getTime();
 
   const top = document.getElementById("top");
   const gallery = document.getElementById("galleryPage");
-
-  const countdown =
-    document.getElementById("countdown");
-
-  const unlock =
-    document.getElementById("unlockArea");
+  const countdown = document.getElementById("countdown");
+  const unlock = document.getElementById("unlockArea");
 
   if (countdownMode || birthdayMode) {
-
     top.style.display = "flex";
     gallery.style.display = "none";
-
-    countdown.style.display =
-      countdownMode ? "grid" : "none";
-
-    unlock.style.display =
-      birthdayMode ? "block" : "none";
-
+    countdown.style.display = countdownMode ? "grid" : "none";
+    unlock.style.display = birthdayMode ? "block" : "none";
   } else {
-
     top.style.display = "none";
     gallery.style.display = "block";
-
     countdown.style.display = "grid";
     unlock.style.display = "none";
-
   }
-
 }
 
-
 function updateCountdown() {
-
   const todayKey = new Date().toDateString();
-
-  // Gün değiştiğinde site modunu yenile.
   if (todayKey !== activeDateKey) {
     applyYearlyMode();
   }
@@ -1048,24 +900,15 @@ function updateCountdown() {
   if (!countdownMode) return;
 
   const distance = birthday - Date.now();
-
   if (distance <= 0) {
     applyYearlyMode();
     return;
   }
 
-  document.getElementById("days").innerText =
-    Math.floor(distance / (1000 * 60 * 60 * 24));
-
-  document.getElementById("hours").innerText =
-    Math.floor((distance / (1000 * 60 * 60)) % 24);
-
-  document.getElementById("minutes").innerText =
-    Math.floor((distance / (1000 * 60)) % 60);
-
-  document.getElementById("seconds").innerText =
-    Math.floor((distance / 1000) % 60);
-
+  document.getElementById("days").innerText = Math.floor(distance / (1000 * 60 * 60 * 24));
+  document.getElementById("hours").innerText = Math.floor((distance / (1000 * 60 * 60)) % 24);
+  document.getElementById("minutes").innerText = Math.floor((distance / (1000 * 60)) % 60);
+  document.getElementById("seconds").innerText = Math.floor((distance / 1000) % 60);
 }
 
 
@@ -1074,17 +917,11 @@ function updateCountdown() {
 ========================= */
 
 function openSecondPage() {
-
   if (!birthdayMode) return;
-
   document.getElementById("top").style.display = "none";
-
   document.getElementById("galleryPage").style.display = "none";
-
   document.getElementById("secondPage").style.display = "block";
-
   window.scrollTo(0,0);
-
 }
 
 
@@ -1093,458 +930,134 @@ function openSecondPage() {
 ========================= */
 
 const slider = document.getElementById("slider");
-
 const dotsContainer = document.getElementById("dots");
-
 const cards = document.querySelectorAll(".message-card");
-
 let currentSlide = 0;
 
-
-// NOKTALARI OTOMATİK OLUŞTUR
-
-cards.forEach((card,index) => {
-
+cards.forEach((card, index) => {
   const dot = document.createElement("button");
-
   dot.className = "dot";
-
-  dot.setAttribute(
-    "aria-label",
-    "Mesaj " + (index + 1)
-  );
-
+  dot.setAttribute("aria-label", "Mesaj " + (index + 1));
   dot.onclick = () => goToSlide(index);
-
   dotsContainer.appendChild(dot);
-
 });
 
 const dots = document.querySelectorAll(".dot");
 
-
-// NOKTALARI GÜNCELLE
-
 function updateDots() {
-
-  dots.forEach((dot,index) => {
-
-    dot.classList.toggle(
-      "active",
-      index === currentSlide
-    );
-
+  dots.forEach((dot, index) => {
+    dot.classList.toggle("active", index === currentSlide);
   });
-
 }
-
-
-// İSTENEN MESAJI GÖSTER
 
 function goToSlide(index) {
-
-  currentSlide = Math.max(
-    0,
-    Math.min(index,cards.length-1)
-  );
-
+  currentSlide = Math.max(0, Math.min(index, cards.length - 1));
   slider.scrollTo({
-
-    left:
-      cards[currentSlide].offsetLeft -
-      slider.offsetLeft,
-
-    behavior:"smooth"
-
+    left: cards[currentSlide].offsetLeft - slider.offsetLeft,
+    behavior: "smooth"
   });
-
   updateDots();
-
 }
-
-
-// OKLARLA GEÇİŞ
 
 function moveSlide(direction) {
-
   goToSlide(currentSlide + direction);
-
 }
 
-
-// PARMAKLA KAYDIRMAYI TAKİP ET
-
-slider.addEventListener("scroll",() => {
-
-  const center =
-    slider.scrollLeft + slider.clientWidth/2;
-
+slider.addEventListener("scroll", () => {
+  const center = slider.scrollLeft + slider.clientWidth / 2;
   let closest = 0;
-
   let minDistance = Infinity;
 
-  cards.forEach((card,index) => {
-
-    const cardCenter =
-      card.offsetLeft + card.offsetWidth/2;
-
-    const distance =
-      Math.abs(center-cardCenter);
-
-    if(distance < minDistance) {
-
+  cards.forEach((card, index) => {
+    const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+    const distance = Math.abs(center - cardCenter);
+    if (distance < minDistance) {
       minDistance = distance;
       closest = index;
-
     }
-
   });
 
   currentSlide = closest;
-
   updateDots();
-
 });
 
 
 /* =========================
-   FOTOĞRAF GALERİSİ
+   FOTOĞRAF GALERİSİ (KALICI LİSTE)
 ========================= */
 
-const galleryDBName = "AshiramePhotoGallery";
+// Yeni fotoğrafları buraya ekleyeceksin.
+// Örn: { src: "foto2.jpg", title: "Başlık", note: "Açıklama" }
+const kaliciFotograflar = [
+  {
+    src: "IMG_9200.jpeg",
+    title: "İki malın Hatırası",
+    note: "Bu anı her zaman burada kalacak ✨"
+  }
+  // Buraya virgül koyarak yeni fotoğraf ekleyebilirsin:
+  // { src: "yenifotograf.jpg", title: "Parti Gecesi", note: "Çok eğlenmiştik." }
+];
 
-const galleryStoreName = "photos";
-
-let galleryDB = null;
-
-
-// VERİTABANI
-
-function openGalleryDatabase() {
-
-  return new Promise((resolve, reject) => {
-
-    if (!("indexedDB" in window)) {
-
-      reject(
-        new Error("Bu tarayıcı fotoğraf depolamayı desteklemiyor.")
-      );
-
-      return;
-
-    }
-
-    const request =
-      indexedDB.open(galleryDBName, 1);
-
-    request.onupgradeneeded = () => {
-
-      const db = request.result;
-
-      if (!db.objectStoreNames.contains(galleryStoreName)) {
-
-        db.createObjectStore(galleryStoreName, {
-          keyPath: "id",
-          autoIncrement: true
-        });
-
-      }
-
-    };
-
-    request.onsuccess = () => {
-
-      galleryDB = request.result;
-      resolve(galleryDB);
-
-    };
-
-    request.onerror = () => reject(request.error);
-
-  });
-
-}
-
-
-// GALERİYİ AÇ
-
-async function openGallery() {
-
-  returnToSecondPage =
-    document.getElementById("secondPage").style.display === "block";
-
-  returnToCountdown =
-    document.getElementById("top").style.display === "flex";
+function openGallery() {
+  returnToSecondPage = document.getElementById("secondPage").style.display === "block";
+  returnToCountdown = document.getElementById("top").style.display === "flex";
 
   document.getElementById("top").style.display = "none";
-
   document.getElementById("secondPage").style.display = "none";
-
   document.getElementById("galleryPage").style.display = "block";
 
   window.scrollTo(0,0);
-
-  try {
-
-    if (!galleryDB) {
-      await openGalleryDatabase();
-    }
-
-    await renderGallery();
-
-  } catch(error) {
-
-    document.getElementById("galleryEmpty").textContent =
-      "Galeri açılamadı: " + error.message;
-
-  }
-
+  renderGallery();
 }
 
-
-// GALERİDEN GERİ DÖN
-
 function closeGallery() {
-
   document.getElementById("galleryPage").style.display = "none";
 
   if (returnToSecondPage) {
-
     document.getElementById("secondPage").style.display = "block";
-
   } else if (returnToCountdown) {
-
     document.getElementById("top").style.display = "flex";
-
   } else {
-
     document.getElementById("galleryPage").style.display = "block";
-
   }
 
   window.scrollTo(0,0);
-
 }
 
-
-// FOTOĞRAF EKLE
-
-async function addGalleryPhoto() {
-
-  const fileInput =
-    document.getElementById("galleryPhoto");
-
-  const captionInput =
-    document.getElementById("galleryCaption");
-
-  const noteInput =
-    document.getElementById("galleryNote");
-
-  const file = fileInput.files[0];
-
-  if (!file) {
-
-    alert("Lütfen önce bir fotoğraf seç.");
-
-    return;
-
-  }
-
-  if (!file.type.startsWith("image/")) {
-
-    alert("Lütfen geçerli bir fotoğraf dosyası seç.");
-
-    return;
-
-  }
-
-  try {
-
-    if (!galleryDB) {
-      await openGalleryDatabase();
-    }
-
-    const photo = {
-
-      image:file,
-
-      caption:
-        captionInput.value.trim() || "Güzel bir anı",
-
-      note:noteInput.value.trim(),
-
-      createdAt:Date.now()
-
-    };
-
-    await new Promise((resolve,reject) => {
-
-      const transaction = galleryDB.transaction(
-        galleryStoreName,
-        "readwrite"
-      );
-
-      transaction.objectStore(galleryStoreName).add(photo);
-
-      transaction.oncomplete = resolve;
-
-      transaction.onerror = () =>
-        reject(transaction.error);
-
-      transaction.onabort = () =>
-        reject(transaction.error);
-
-    });
-
-    fileInput.value = "";
-    captionInput.value = "";
-    noteInput.value = "";
-
-    await renderGallery();
-
-  } catch(error) {
-
-    alert(
-      "Fotoğraf kaydedilemedi. Depolama alanı dolmuş olabilir."
-    );
-
-  }
-
-}
-
-
-// FOTOĞRAFLARI GÖSTER
-
-async function renderGallery() {
-
-  if (!galleryDB) {
-    await openGalleryDatabase();
-  }
-
-  const photos = await new Promise((resolve,reject) => {
-
-    const transaction = galleryDB.transaction(
-      galleryStoreName,
-      "readonly"
-    );
-
-    const request =
-      transaction.objectStore(galleryStoreName).getAll();
-
-    request.onsuccess = () =>
-      resolve(request.result);
-
-    request.onerror = () =>
-      reject(request.error);
-
-  });
-
-  const grid =
-    document.getElementById("galleryGrid");
-
-  const empty =
-    document.getElementById("galleryEmpty");
+function renderGallery() {
+  const grid = document.getElementById("galleryGrid");
+  const empty = document.getElementById("galleryEmpty");
 
   grid.innerHTML = "";
 
-  empty.style.display =
-    photos.length ? "none" : "block";
+  if (kaliciFotograflar.length === 0) {
+    empty.style.display = "block";
+    return;
+  } else {
+    empty.style.display = "none";
+  }
 
-  photos.sort((a,b) => b.createdAt - a.createdAt);
-
-  photos.forEach((photo) => {
-
-    const card =
-      document.createElement("article");
-
+  kaliciFotograflar.forEach((photo) => {
+    const card = document.createElement("article");
     card.className = "gallery-item";
 
-    const image =
-      document.createElement("img");
+    const image = document.createElement("img");
+    image.src = photo.src;
+    image.alt = photo.title || "Galeri fotoğrafı";
 
-    const imageUrl =
-      URL.createObjectURL(photo.image);
-
-    image.src = imageUrl;
-
-    image.alt =
-      photo.caption || "Galeri fotoğrafı";
-
-    image.onload = () =>
-      URL.revokeObjectURL(imageUrl);
-
-    const info =
-      document.createElement("div");
-
+    const info = document.createElement("div");
     info.className = "gallery-item-info";
 
-    const title =
-      document.createElement("h3");
+    const title = document.createElement("h3");
+    title.textContent = photo.title || "Güzel bir anı";
 
-    title.textContent =
-      photo.caption || "Güzel bir anı";
+    const note = document.createElement("p");
+    note.textContent = photo.note || "";
 
-    const note =
-      document.createElement("p");
-
-    note.textContent =
-      photo.note || "";
-
-    const removeButton =
-      document.createElement("button");
-
-    removeButton.type = "button";
-
-    removeButton.textContent = "Fotoğrafı sil";
-
-    removeButton.onclick = () =>
-      deleteGalleryPhoto(photo.id);
-
-    info.append(title,note,removeButton);
-
-    card.append(image,info);
-
+    info.append(title, note);
+    card.append(image, info);
     grid.appendChild(card);
-
   });
-
-}
-
-
-// FOTOĞRAF SİL
-
-async function deleteGalleryPhoto(id) {
-
-  if (!confirm("Bu fotoğrafı galeriden silmek istiyor musun?")) {
-    return;
-  }
-
-  try {
-
-    await new Promise((resolve,reject) => {
-
-      const transaction = galleryDB.transaction(
-        galleryStoreName,
-        "readwrite"
-      );
-
-      transaction.objectStore(galleryStoreName).delete(id);
-
-      transaction.oncomplete = resolve;
-
-      transaction.onerror = () =>
-        reject(transaction.error);
-
-    });
-
-    await renderGallery();
-
-  } catch(error) {
-
-    alert("Fotoğraf silinemedi.");
-
-  }
-
 }
 
 
@@ -1553,11 +1066,8 @@ async function deleteGalleryPhoto(id) {
 ========================= */
 
 applyYearlyMode();
-
 updateCountdown();
-
-setInterval(updateCountdown,1000);
-
+setInterval(updateCountdown, 1000);
 updateDots();
 
 </script>
